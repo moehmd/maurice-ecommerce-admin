@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>gérer l'unité de quantité</h1>
+<div mat-dialog-content>
+
+
+  <div *ngFor='let entry of adminArray'>
+    <div class="row">
+      <div class="col-lg-12">
+    <form  #f="ngForm">
+      <span >
+        <mat-form-field appearance="outline" class="col-lg-6 " >
+          <mat-label>Nom complet</mat-label>
+        <input matInput placeholder="Nom complet" type="text" name="FULLNAME" [(ngModel)]="entry.FULLNAME" required />
+        <mat-error>Le nom complet est requis</mat-error>
+      </mat-form-field></span>
+      <span >
+        <mat-form-field appearance="outline" class="col-lg-6 " >
+          <mat-label>E-mail</mat-label>
+        <input matInput placeholder="E-mail" type="text" name="EMAIL" [(ngModel)]="entry.EMAIL" required />
+        <mat-error>Le e-mail est requis</mat-error>
+      </mat-form-field></span>
+      <span >
+        <mat-form-field appearance="outline" class="col-lg-6 " >
+          <mat-label>Mot de passe</mat-label>
+        <input matInput placeholder="Mot de passe" type="password" name="PASSWORD" [(ngModel)]="entry.PASSWORD" required />
+        <mat-error>Le mot de passe est requis</mat-error>
+      </mat-form-field></span>
+
+      <span >
+        <mat-form-field appearance="outline" class="col-lg-6 " >
+          <mat-label>Confirmation mot de passe</mat-label>
+        <input matInput placeholder="Confirmation mot de passe" type="password" name="CONFRIM_PASSWORD" [(ngModel)]="entry.CONFIRM_PASSWORD" required />
+        <mat-error>La confirmation mot de passe est requis</mat-error>
+      </mat-form-field></span>
+
+      <div class="row">
+        <div class='col col-md-6'>
+          <button [disabled]='!f.valid' mat-raised-button  type="button"
+            class="btn btn-outline-secondary btn-block" (click)='Edit(entry)'>Sauvegarder</button>
+        </div>
+        <div class='col col-md-6'>
+          <button mat-raised-button  type="button" class="btn btn-outline-secondary btn-block"
+            (click)="cancel()">Annuler</button>
+        </div>
+      </div>
+    </form>
+</div>
+</div>
+
+  </div>
+</div>

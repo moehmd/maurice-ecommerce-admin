@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ionicons-npm/css/ionicons.min.css';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.wrapper
+  .content-wrapper
+    .content {
+      padding: 0 1rem;
+
+
+}
+.search_criteria_section {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
+  margin-top: 4px;
+  /* color:white;
+  background-color: rgba(0,0,0,0.5); */
+}
+
+.entry_section {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 10px;
+  /* color:white;*/
+  background-color:rgba(105,105,105,0.2);
+}
+
+.entry_section_child {
+  border: 1px solid white;
+  border-radius: 4px;
+  margin: 8px;
+  padding:8px;
+}
+
+.container_actions {
+  background-color: #424242;
+
+  padding: 5px;
+}
+
+.vertical_cations {
+  border: 1px solid red;
+  margin-top: 10px;
+  margin-left: 1px;
+}
+
+.btn-outline-primary {
+
+  border-color: #222d32;
+  background-color: #222d32;
+  color: #f3e613;
+
+}
+.btn-outline-primary:disabled{
+
+  border-color: #222d32;
+  background-color: #222d32;
+  color: #f3e613;
+
+}
+
+.skin-blue .sidebar-menu>li.active>a {
+  border-left-color: #f3e613;
+}
+
+
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #424242 !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color:  #424242 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color:  #424242 !important;;
+}
+
+.content{
+  padding-top: 10px !important;
+}
+.skin-blue .main-header .navbar {
+  background-color: #f3e613;
+}
+.skin-blue .main-header .logo {
+  background-color: #d9d019;
+  color: #222d32;
+  border-bottom: 0 solid transparent;
+}
+.skin-blue .main-header .logo:hover {
+  background-color: #f3e613;
+  color: #222d32;
+  border-bottom: 0 solid transparent;
+}
+.hidden-xs{
+  color: #222d32;
+}
+.skin-blue .main-header .navbar .sidebar-toggle {
+  color: #222d32;
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #d9d019;
+  color: #222d32;
+}
+.fa {
+  color: #d9d019;
+}
+.skin-blue .main-header li.user-header {
+  background-color: #222d32;
+}
+li{
+  text-decoration: none;
+  outline: 0;
+}
+a{
+  cursor: pointer;
+}
+.header-btn {
+  width: initial;
+  border-color: #222d32;
+  background-color: #222d32;
+  color: #f3e613;
+  float: right;
+
+}
+.btn{
+  border-color: #222d32 !important;
+  background-color: #222d32 !important;
+  color: #f3e613 !important;
+}
+/* Styles for tab labels */
+.mat-tab-label {
+
+  background-color: transparent;
+  color: #222d32;
+  font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+
+  background-color: transparent;
+  color: #222d32;
+  font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+  background-color: #f3e613 !important;
+}
+.spacing{
+  margin-top: 20px;
+}

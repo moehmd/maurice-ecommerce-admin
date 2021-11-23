@@ -1,0 +1,170 @@
+<h1 mat-dialog-title>gérer le produit</h1>
+<div mat-dialog-content>
+
+
+  <div *ngFor='let entry of productsArray'>
+    <div class="row">
+      <div class="col-lg-12">
+        <mat-tab-group dynamicHeight="true" animationDuration="1000ms" color="yellow" backgroundColor="yellow">
+          <mat-tab label="Titre">
+
+
+            <form fxLayout='column' #f="ngForm">
+              <mat-form-field appearance="outline" class="col-lg-6 ">
+                <input matInput placeholder="Name" type="text" name="NAME" [(ngModel)]="entry.NAME" required />
+                <mat-error>Name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-lg-6 ">
+                <textarea matTextareaAutosize matInput name="REFERENCE_NUMBER" placeholder="Reference Number" rows="3"
+                  [(ngModel)]="entry.REFERENCE_NUMBER" required></textarea>
+                <mat-error>Reference Number is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-lg-6 ">
+                <mat-select placeholder="Category" [(value)]='entry.CATEGORY_ID'>
+                  <mat-option>Choose</mat-option>
+                  <mat-option *ngFor='let CategoryEntry of CategoryList' [value]='CategoryEntry.CATEGORY_ID'>
+                    {{CategoryEntry.NAME}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-lg-6 ">
+                <input matInput placeholder="Rate" type="number" name="RATE" [(ngModel)]="entry.RATE" required />
+                <mat-error>Rate is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-lg-6 ">
+                <textarea matTextareaAutosize matInput name="DESCRIPTION" placeholder="Description" rows="3"
+                  [(ngModel)]="entry.DESCRIPTION" required></textarea>
+                <mat-error>Description is required</mat-error>
+              </mat-form-field>
+              <div class="row">
+                <div class='col col-md-12'>
+                  <div class='col col-md-6'>
+                    <button [disabled]='!f.valid' mat-raised-button color='primary' type="button"
+                      class="btn btn-outline-secondary btn-block" (click)='Edit(entry)'>Save</button>
+                  </div>
+                  <div class='col col-md-6'>
+                    <button mat-raised-button type="button" class="btn btn-outline-secondary btn-block"
+                      (click)="cancel()">Annuler</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+          </mat-tab>
+          <mat-tab label='Color' *ngIf='entry.PRODUCT_ID != -1'>
+
+
+            <div class="col-6">
+
+              <i class='fa fa-plus fa-2x text-primary float-right' (click)='Add_Color(entry)'></i>
+            </div>
+            <div class='row entry_section_child' *ngFor='let childColor of entry.My_Color;let i = index;'>
+              <mat-tab-group dynamicHeight="true" animationDuration="1000ms" color="yellow" backgroundColor="yellow">
+                <mat-tab label="Titre">
+                  <form fxLayout='column' #fColor="ngForm">
+                    <div class="row m-0">
+                      <div class='col-md'>
+                        <mat-form-field appearance="outline" class="col-lg-6 ">
+                          <input matInput placeholder="Name" type="text" name="NAME" [(ngModel)]="childColor.NAME"
+                            required />
+                          <mat-error>Name is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class='col-md'>
+                        <mat-form-field appearance="outline" class="col-lg-6 ">
+                          <textarea matTextareaAutosize matInput name="DESCRIPTION" placeholder="Description" rows="3"
+                            [(ngModel)]="childColor.DESCRIPTION" required></textarea>
+                          <mat-error>Description is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class='col-md'>
+                        <button [disabled]='!fColor.valid' type="button" class="btn btn-outline-primary btn-sm"
+                          (click)='Edit_Color(entry,childColor)'>Save</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm"
+                          (click)='Delete_Color(entry,childColor)'>Delete</button>
+                      </div>
+                    </div>
+                  </form>
+                </mat-tab>
+                <mat-tab label="Images" *ngIf='childColor.COLOR_ID != -1' class="spacing">
+                  <image-upload *ngIf='childColor.COLOR_ID != -1' [url]="childColor.MyURL"
+                    [uploadedFiles]="childColor.MyUploadedImages" (removed)="onRemoved($event)"
+                    (uploadFinished)="imageFinishedUploading($event)"
+                    (uploadStateChanged)="onUploadStateChanged($event)">
+                  </image-upload>
+                </mat-tab>
+              </mat-tab-group>
+
+            </div>
+          </mat-tab>
+          <mat-tab label='Size' *ngIf='entry.PRODUCT_ID != -1'>
+
+            <div class='row'>
+
+
+
+            </div>
+            <div class="col-6">
+
+              <i class='fa fa-plus fa-2x text-primary float-right' (click)='Add_Size(entry)'></i>
+            </div>
+            <div class='row entry_section_child' *ngFor='let childSize of entry.My_Size;let i = index;'>
+              <form fxLayout='column' #fSize="ngForm">
+                <div class="row m-0">
+                  <div class='col-md'>
+                    <mat-form-field appearance="outline" class="col-lg-6 ">
+                      <input matInput placeholder="Size Number" type="number" name="SIZE_NUMBER"
+                        [(ngModel)]="childSize.SIZE_NUMBER" required />
+                      <mat-error>Size Number is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-md'>
+                    <mat-form-field appearance="outline" class="col-lg-6 ">
+                      <mat-select placeholder="Unit" [(value)]='childSize.UNIT_ID'>
+                        <mat-option>Choose</mat-option>
+                        <mat-option *ngFor='let UnitEntry of UnitList' [value]='UnitEntry.UNIT_ID'>
+                          {{UnitEntry.UNIT_NAME}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-md'>
+                    <mat-form-field appearance="outline" class="col-lg-6 ">
+                      <input matInput placeholder="Price" type="number" name="PRICE" [(ngModel)]="childSize.PRICE"
+                        required />
+                      <mat-error>Price is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-md'>
+                    <mat-form-field appearance="outline" class="col-lg-6 ">
+                      <mat-select placeholder="Currency" [(value)]='childSize.CURRENCY_ID'>
+                        <mat-option>Choose</mat-option>
+                        <mat-option *ngFor='let CurrencyEntry of CurrencyList' [value]='CurrencyEntry.CURRENCY_ID'>
+                          {{CurrencyEntry.NAME}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-md'>
+                    <mat-form-field appearance="outline" class="col-lg-6 ">
+                      <textarea matTextareaAutosize matInput name="DESCRIPTION" placeholder="Description" rows="3"
+                        [(ngModel)]="childSize.DESCRIPTION" required></textarea>
+                      <mat-error>Description is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-md'>
+                    <button [disabled]='!fSize.valid' type="button" class="btn btn-outline-primary btn-sm"
+                      (click)='Edit_Size(entry,childSize)'>Save</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"
+                      (click)='Delete_Size(entry,childSize)'>Delete</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </mat-tab>
+
+        </mat-tab-group>
+
+      </div>
+    </div>
+
+  </div>
+</div>

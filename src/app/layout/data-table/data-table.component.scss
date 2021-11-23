@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+}
+table.action-td {
+  font-size: 20px;
+  text-align: right;
+}
+table.action-td.action-margin {
+  margin-right: 8px;
+}
+
+table.actions-header-cell {
+  text-align: right;
+}
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  .mat-table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 1rem;
+      display: table;
+      border-collapse: collapse;
+      margin: 0px;
+  }
+  .mat-row,
+  .mat-header-row {
+      display: table-row;
+  }
+  .mat-cell,
+  .mat-header-cell {
+      word-wrap: initial;
+      display: table-cell;
+      padding: 0px 5px;
+      line-break: unset;
+      width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      vertical-align: middle;
+  }
+}

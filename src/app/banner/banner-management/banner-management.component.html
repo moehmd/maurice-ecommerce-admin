@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>gérer la banniere</h1>
+<div mat-dialog-content>
+
+
+  <div *ngFor='let entry of bannersArray'>
+    <div class="row">
+      <div class="col-lg-12">
+        <mat-tab-group dynamicHeight="true" animationDuration="1000ms" color="yellow" backgroundColor="yellow">
+          <mat-tab label="Titre">
+            <form fxLayout='column' #f="ngForm" class="spacing">
+              <span >
+                <mat-form-field appearance="outline" class="col-lg-6 " >
+                  <mat-label>Titre</mat-label>
+                  <input matInput placeholder="Titre" type="text"  name="TITLE" [(ngModel)]="entry.TITLE" required /><mat-error>Le titre est requis</mat-error>
+              </mat-form-field></span>
+
+              <div class="row">
+                <div class='col col-md-12'>
+              <div class='col col-md-6'>
+              <button [disabled]='!f.valid' mat-raised-button color='primary' type="button" class="btn btn-outline-secondary btn-block" (click)='Edit(entry)'>Save</button>
+              </div>
+              <div class='col col-md-6'>
+                <button mat-raised-button  type="button" class="btn btn-outline-secondary btn-block"
+                (click)="cancel()">Annuler</button>
+              </div>
+            </div>
+              </div>
+              </form></mat-tab>
+          <mat-tab label="Images" *ngIf='entry.BANNER_ID != -1' class="spacing">
+          <image-upload *ngIf='entry.BANNER_ID != -1'
+          [url]="entry.MyURL"
+          [uploadedFiles]="entry.MyUploadedImages"
+          (removed)="onRemoved($event)"
+          (uploadFinished)="imageFinishedUploading($event)"
+          (uploadStateChanged)="onUploadStateChanged($event)">
+          </image-upload>
+          </mat-tab>
+          </mat-tab-group>
+
+</div>
+</div>
+
+  </div>
+</div>

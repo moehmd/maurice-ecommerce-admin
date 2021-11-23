@@ -1,0 +1,11 @@
+<div class="box-header with-border">
+  Ordres arrivés à destination
+
+</div>
+<div class="box-body">
+  <app-data-table [displayedColumns]="tableColumns" [data]="orderArray" [actions]="tableActions"
+  (onDataSourceChange)="refreshOrders()" (onDelete)="Delete($event)"  [dropDown]="StatusList"
+  (ddlOnChange)="Edit($event)"
+
+ ></app-data-table>
+</div>
